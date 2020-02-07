@@ -5,8 +5,14 @@
 			"name": "donwload",
 			"mainFunctionName": "download",
 			"moduleName":"download",
-			"path": ""
-		
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+		},
+		{
+			"name": "donwload2",
+			"mainFunctionName": "download",
+			"moduleName":"download",
+			"path": ""	
 		}
 	]
 }

@@ -24,9 +24,8 @@ def loadConfiguration(fileName):
 	with open(fileName) as json_file:
 		data = json.load(json_file)
 	
-	configuration = type('',(object,),data)()
-	tcJson = configuration.testCases
-	configuration.testCases = [type('', (object,), tc) for tc in tcJson]
+	from utilities import jsonLoader 
+	configuration = jsonLoader.CreateObject(data)
 
 	return configuration
 
