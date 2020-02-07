@@ -23,8 +23,12 @@ def loadConfiguration(fileName):
 
 	with open(fileName) as json_file:
 		data = json.load(json_file)
+	
+	configuration = type('',(object,),data)()
+	tcJson = configuration.testCases
+	configuration.testCases = [type('', (object,), tc) for tc in tcJson]
 
-	return [type('',(object,),tc)() for tc in data ]
+	return configuration
 
 __all__ = ['excutor']
 configurations = {}

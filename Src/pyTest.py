@@ -1,4 +1,4 @@
 
 from executionEngine import *
 
-excutor.Excute(Regression)
+excutor.Execute(Regression)

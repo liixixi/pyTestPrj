@@ -130,3 +130,4 @@ dmypy.json
 
 # looks .vs folder should not upload
 .vs/
+.vscode/

@@ -1,8 +1,12 @@
-[
-	{
-		"mainFunctionName": "download",
-		"moduleName":"download",
-		"path": "",
-		"default": "main"
-	}
-]
+{
+	"name": "Regression",
+	"testCases": [
+		{
+			"name": "donwload",
+			"mainFunctionName": "download",
+			"moduleName":"download",
+			"path": ""
+		
+		}
+	]
+}
