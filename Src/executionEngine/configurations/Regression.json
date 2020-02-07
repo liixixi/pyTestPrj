@@ -1,12 +1,8 @@
 [
 	{
-		"name": "download",
-		"path": "download",
+		"mainFunctionName": "download",
+		"moduleName":"download",
+		"path": "",
 		"default": "main"
-	},
-	{
-		"name": "multipleTab",
-		"path": "multipleTab",
-		"default":  "main"
 	}
 ]

@@ -14,7 +14,9 @@ def loadAllConfigurationFiles(currentPath):
 		if (isfile(join(configurationPath, f)) == False):
 			continue
 		__all__.append(splitext(f)[0])
-		setattr(thismodule, splitext(f)[0], loadConfiguration(join(configurationPath, f)))
+		configuration = loadConfiguration(join(configurationPath, f))
+		setattr(thismodule, splitext(f)[0], configuration)
+		configurations[splitext(f)[0]] = configuration
 
 def loadConfiguration(fileName):
 	import json
@@ -24,5 +26,8 @@ def loadConfiguration(fileName):
 
 	return [type('',(object,),tc)() for tc in data ]
 
-__all__ = []
+__all__ = ['excutor']
+configurations = {}
 loadAllConfigurationFiles(__path__[0])
+
+import executionEngine.excutor as excutor
