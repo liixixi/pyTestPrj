@@ -10,3 +10,4 @@ I will implement a 3 layer auto testing engine, including:
 3. utilities, provide tools need by test case library.
 
 Ok, after one day, I finish one json reader for python, which could load json object as python object, I don't know whether this is useful or not, let's see.
+
