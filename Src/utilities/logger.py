@@ -8,3 +8,4 @@ def logSetupTestCase(testCaseName):
 
 def SetupConfiguration(configurationName):
     print("Start executing configuration '{0}'\n".format(configurationName))
+    pass
