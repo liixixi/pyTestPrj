@@ -18,7 +18,7 @@ def ExecuteTestCase(testCase):
     testCaseFunction = getattr(testCaseModule, testCase.mainFunctionName)
 
     #basic setup and test support is here, do less work when create test case
-    SetupTestCase(testCase.name)
+    SetupTestCase(testCase)
     ret = testCaseFunction()
     TearDownTestCase(testCase.name, ret)
     pass
@@ -30,10 +30,28 @@ def SetupConfiguration(configurationName):
 
     pass
 
-def SetupTestCase(testCaseName):
+def SetupTestCase(testCase):
     from utilities import logger
+    import importlib
 
-    logger.logSetupTestCase(testCaseName)
+    logger.logSetupTestCase(testCase.name)
+
+    moduleFullName = 'testCaseLibrary.' + testCase.moduleName
+
+    testCaseModule = importlib.import_module(moduleFullName)
+    setupFunctionName = "setup" #default name
+    try:
+        setupFunctionName = testCase.setup
+    except:
+        pass
+
+    try:
+        #test module may not have such function
+        testCaseFunction = getattr(testCaseModule, setupFunctionName)
+
+        testCaseFunction()
+    except:
+        pass
 
     pass
 

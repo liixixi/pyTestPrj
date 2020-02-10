@@ -25,11 +25,12 @@ def loadConfiguration(fileName):
 		data = json.load(json_file)
 	
 	from utilities import jsonLoader 
+	# we only accept configuration as one object, as it should have its own properties and test cases list
 	configuration = jsonLoader.CreateObject(data)
 
 	return configuration
 
-__all__ = ['excutor']
+__all__ = ['excutor', 'configurations']
 configurations = {}
 loadAllConfigurationFiles(__path__[0])
 

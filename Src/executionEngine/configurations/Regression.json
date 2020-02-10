@@ -9,9 +9,9 @@
 			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
 		},
 		{
-			"name": "donwload2",
-			"mainFunctionName": "download",
-			"moduleName":"download",
+			"name": "CCWRegression",
+			"mainFunctionName": "CCWRegression",
+			"moduleName":"CCW",
 			"path": ""	
 		}
 	]

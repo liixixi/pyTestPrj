@@ -20,6 +20,7 @@ def CreateList(data):
 
     return retList
 
+#basic test of this module
 if (__name__ == '__main__'):
     import json
     with open(r'Src\utilities\test.json') as json_file:
