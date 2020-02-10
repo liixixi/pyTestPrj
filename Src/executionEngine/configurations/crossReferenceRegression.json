@@ -1,0 +1,15 @@
+{
+    "name": "crossReferenceRegression",
+    "testCases":[
+        {
+            "name": "TestOpenCrossReferenceWindow",
+            "mainFunctionName":"TestOpenCrossReferenceWindow",
+            "moduleName":"CCW.crossReference"
+        },
+        {
+            "name": "testcase1",
+            "mainFunctionName":"testcase1",
+            "moduleName":"CCW.crossReference"
+        }
+    ]
+}

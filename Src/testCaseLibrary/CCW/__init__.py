@@ -1,10 +1,10 @@
 
 def CCWRegression():
 
-    import catalogService
-    
+    import testCaseLibrary.CCW.catalogService
+
     # catalog service regression test cases
-    catalogService.Regression()
+    #catalogService.Regression()
 
     pass
 

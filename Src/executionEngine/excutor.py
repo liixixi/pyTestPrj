@@ -4,7 +4,19 @@ def Execute(configuration):
     SetupConfiguration(configuration.name)
 
     for testCase in configuration.testCases:
-        ExecuteTestCase(testCase)
+        if (TryExpendConfiguration(testCase) == False):
+            ExecuteTestCase(testCase)
+    pass
+
+def TryExpendConfiguration(testCase):
+    expendedConfigurationName = ''
+    try:
+        expendedConfigurationName = testCase.defination
+    except:
+        return False
+    
+    import executionEngine
+    Execute(executionEngine.configurations[expendedConfigurationName])
 
     pass
 

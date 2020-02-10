@@ -13,6 +13,17 @@
 			"mainFunctionName": "CCWRegression",
 			"moduleName":"CCW",
 			"path": ""	
+		},
+		{
+			"name": "catalogRegression",
+			"mainFunctionName": "Regression",
+			"moduleName":"CCW.catalogService",
+			"setup":"setup",
+			"path": ""	
+		},
+		{
+			"name": "crossReferenceRegression",
+			"defination": "crossReferenceRegression"
 		}
 	]
 }
