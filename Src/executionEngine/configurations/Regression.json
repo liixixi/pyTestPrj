@@ -24,6 +24,10 @@
 		{
 			"name": "crossReferenceRegression",
 			"defination": "crossReferenceRegression"
+		},
+		{
+			"name": "multipleTab",
+			"defination": "multipleTab"
 		}
 	]
 }

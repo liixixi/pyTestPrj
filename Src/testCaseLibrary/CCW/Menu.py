@@ -7,6 +7,9 @@ def openCrossReferenceWindow():
     # taf click menu
     pass
 
+def openProject(name, path=''):
+    pass
+
 
 def setup():
     import utilities

@@ -1,0 +1,23 @@
+{
+    "name": "multipleTab",
+	"testCases": [
+		{
+			"name": "openMultipleScreen",
+			"mainFunctionName": "openMultipleScreen",
+            "moduleName":"R1201.multipleTab",
+            "setup":"CreateANewProject",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "changeCurrentActiveScreen",
+			"mainFunctionName": "changeCurrentActiveScreen",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        }
+    ]
+}

@@ -6,5 +6,13 @@ def OpenAddDeviceDialog():
 def removeDevice(deviceName):
     pass
 
-def CreatePV800Project(deviceName='PV800_App1', orientation='Landscape'):
+def CreatePV800Project(orientation='Landscape'):
+    pass
+
+def OpenScreen(screenName):
+    # call taf to open screen
+
+    pass
+
+def CreateScreen(count=1):
     pass
