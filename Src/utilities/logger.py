@@ -11,7 +11,7 @@ def SetupConfiguration(configurationName):
     pass
 
 def verifyMessage(message):
-    print(message)
+    print("    " + message)
 
 class stepLogger:
     def __init__(self):
@@ -21,6 +21,17 @@ class stepLogger:
         print('----------------------------------')
         print('Step' + str(self.step) + ' ' + message)
         self.step += 1
-
+    
 def getStepLogger():
     return stepLogger()
+
+class caseLogger:
+    def __init__(self):
+        self.case = 1
+    def logCaseInfo(self, message):
+        print('==================================')
+        print('Case ' + str(self.case) + ' ' + message)
+        self.case += 1
+
+def getCaseLogger():
+    return caseLogger()

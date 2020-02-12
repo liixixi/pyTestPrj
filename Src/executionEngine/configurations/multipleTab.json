@@ -14,6 +14,15 @@
 			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
         },
         {
+			"name": "multipleScreenTest",
+			"mainFunctionName": "multipleScreenTest",
+            "moduleName":"R1201.multipleTab",
+            "setup":"CreateANewProject",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
 			"name": "changeCurrentActiveScreen",
 			"mainFunctionName": "changeCurrentActiveScreen",
             "moduleName":"R1201.multipleTab",
