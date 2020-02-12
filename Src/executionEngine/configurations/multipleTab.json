@@ -1,5 +1,8 @@
 {
     "name": "multipleTab",
+    "moduleName" : "R1201.multipleTab",
+    "setup": "setupFunctionName",
+    "tearDown":"configurationTearDown",
 	"testCases": [
 		{
 			"name": "openMultipleScreen",
@@ -16,7 +19,8 @@
             "moduleName":"R1201.multipleTab",
             "setup":"OpenProjectMulitpleTab",
             "tearDown":"CloseCCW",
-			"path": "",
+            "path": "",
+            "dependency":"openMultipleScreen",
 			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
         },
         {
