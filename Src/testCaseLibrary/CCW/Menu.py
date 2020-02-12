@@ -8,8 +8,11 @@ def openCrossReferenceWindow():
     pass
 
 def openProject(name, path=''):
+
     pass
 
+def closeProject(name):
+    pass
 
 def setup():
     import utilities

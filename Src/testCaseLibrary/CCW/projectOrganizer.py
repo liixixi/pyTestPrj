@@ -14,5 +14,9 @@ def OpenScreen(screenName):
 
     pass
 
+def IsScreenOpen(screenName):
+    # call taf to judge whether screen has opened
+    pass
+
 def CreateScreen(count=1):
     pass

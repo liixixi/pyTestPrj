@@ -1,3 +1,5 @@
+import utilities
+import testCaseLibrary
 
 def CreateANewProject():
     import utilities
@@ -76,10 +78,75 @@ def openMultipleScreen():
 
     # verify this step
     verify(testCaseLibrary.CCW.findToolWindow(screenName) == None, screenName + ' is closed')
-    verify(testCaseLibrary.CCW.findToolWindow(leftScreenNames[0]) != None, leftScreenNames[0] + 'is opened')
-    verify(testCaseLibrary.CCW.findToolWindow(leftScreenNames[1]) != None, leftScreenNames[1] + 'is opened')
+    verify(testCaseLibrary.CCW.findToolWindow(leftScreenNames[0]) != None, leftScreenNames[0] + ' is opened')
+    verify(testCaseLibrary.CCW.findToolWindow(leftScreenNames[1]) != None, leftScreenNames[1] + ' is opened')
+
+    testCaseLibrary.CCW.findToolWindow(leftScreenNames[1]).close()
+    testCaseLibrary.CCW.findToolWindow(leftScreenNames[0]).close()
 
     pass
+
+def multipleScreenTest():
+    multipleScreenTest1()
+    pass
+def multipleScreenTest1():
+    caseLogger = utilities.logger.getCaseLogger()
+    caseLogger.logCaseInfo('open one or more screen')
+
+    stepLogger = utilities.logger.getStepLogger()
+    #stepLogger.logStepInfo('open one or more screen')
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    from utilities.verify import verify as verify
+    # 1. open MultipleTab project
+    stepLogger.logStepInfo('open MultipleTab project')
+    verify(testCaseLibrary.CCW.Menu.openProject(name='MultipleTab') != None, 'MultipleTab project is opened')
+    
+    # 2. open default screen Screen_1
+    stepLogger.logStepInfo('open default screen Screen_1')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 is opened')
+    
+    # 3. add new screen and open, should be Screen_2
+    stepLogger.logStepInfo('add new screen and open, should be Screen_2')
+    testCaseLibrary.CCW.projectOrganizer.CreateScreen() 
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_2') != None, 'Screen_2 is opened')
+                                            #   findToolWindow
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') != None, 'Screen_1 is still open')
+    
+    # 4. close Screen_1, Screen_2 is still open
+    stepLogger.logStepInfo('close Screen_1, Screen_2 is still open')
+    testCaseLibrary.CCW.findToolWindow('Screen_1').close()
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == None, 'Screen_1 is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen("Screen_2") != None, 'Screen_2 is still open')
+
+    # 5. open Screen_1 again
+    stepLogger.logStepInfo('open Screen_1 again')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_2') != None, 'Screen_2 is still open')
+
+    # 6. add new screen and open, should be Screen_3
+    stepLogger.logStepInfo('add new screen and open, should be Scren_3')
+    testCaseLibrary.CCW.projectOrganizer.CreateScreen()
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_3') != None, 'Screen_3 is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') != None, 'Screen_1 is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_2') != None, 'Screen_2 is opened')
+    
+    # 7. Close Screen_1, Screen_2 and Screen_3 still open
+    stepLogger.logStepInfo('Close Screen_1, Screen_2 and Screen_3 still open')
+    testCaseLibrary.CCW.findToolWindow('Screen_1').close()
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == None, 'Screen_1 is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_2') != None, 'Screen_2 is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_3') != None, 'Screen_3 is still open')
+    
+    # 8. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name='MultipleTab') != None, 'project MultipleTab is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+#testCaseLibrary.CCW.findToolWindow(screenName).close()
+    pass 
 
 def changeCurrentActiveScreen():
 
