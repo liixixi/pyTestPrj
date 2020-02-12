@@ -178,3 +178,92 @@ def CutCopyAcrossScreen():
     verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Up')!=None,'Undo, Up Key is back')
     pass
 
+def DragDropAcrossScreen():
+    import testCaseLibrary
+    import utilities
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+    stepLogger.logStepInfo('open main screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') != None, 'Main is opened')
+
+    stepLogger.logStepInfo('open Alarms screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') != None, 'Main is opened')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') != None, 'Alarms is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarms', 'Alarms is current active toolWindow')
+   
+    stepLogger.logStepInfo('Drag and drop Enter to Main Screen ')
+
+    testCaseLibrary.CCW.objectOperate.DragDropPanelDevice('Enter','Main')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name=='Main','Main is current active Window')
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Enter') !=None,'Drag and Drop, Enter Key is on the Main Screen')
+    
+    stepLogger.logStepInfo('No Enter Key on the Alarms Screen')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') == None, 'Alarms is opened')
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Enter') ==None,'Drag and Drop, Enter Key is NOT on the Main Screen')
+
+    stepLogger.logStepInfo('Undo')
+    testCaseLibrary.CCW.objectOperate.undoOperate()
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Enter') !=None,'Enter Key is back')
+
+def renameActiveScreen():
+    import testCaseLibrary
+    import utilities
+    from utilities.verify import verify as verify
+
+    stepLogger = utilities.logger.getStepLogger()
+    stepLogger.logStepInfo('open main screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') != None, 'Main is opened')
+
+    stepLogger.logStepInfo('open Alarms screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') != None, 'Main is opened')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') != None, 'Alarms is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarms', 'Alarms is current active toolWindow')
+
+    stepLogger.logStepInfo('rename Screen Main to Home')
+
+    testCaseLibrary.CCW.projectOrganizer.renameScreen('Main','Home')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') == None, 'Main has been renamed')
+    verify(testCaseLibrary.CCW.findToolWindow('Home') != None, 'Home is the new name')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') != None, 'Alarms is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarms', 'Alarms is current active toolWindow')
+
+    stepLogger.logStepInfo('rename Screen Alarms to Alarm')
+
+    testCaseLibrary.CCW.projectOrganizer.renameScreen('Alarms','Alarm')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') == None, 'Alarms has been renamed')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarm') != None, 'Alarm is the new name')
+    verify(testCaseLibrary.CCW.findToolWindow('Home') != None, 'Home is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarm', 'Alarm is current active toolWindow')
+
+    stepLogger.logStepInfo('open Diagnostics screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics')
+    verify(testCaseLibrary.CCW.findToolWindow('Diagnostics') != None, 'Diagnostics is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Diagnostics', 'Diagnostics is current active toolWindow')
+
+    stepLogger.logStepInfo('rename Screen Alarm to Alarms')
+
+    testCaseLibrary.CCW.projectOrganizer.renameScreen('Alarm','Alarms')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarm') == None, 'Alarm has been renamed')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') != None, 'Alarms is the new name')
+    verify(testCaseLibrary.CCW.findToolWindow('Home') != None, 'Home is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Diagnostics', 'Diagnostics is current active toolWindow')
+
+    stepLogger.logStepInfo('rename Screen Home to Main')
+
+    testCaseLibrary.CCW.projectOrganizer.renameScreen('Alarm','Alarms')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarm') == None, 'Alarm has been renamed')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') != None, 'Alarms is the new name')
+    verify(testCaseLibrary.CCW.findToolWindow('Home') != None, 'Home is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Diagnostics', 'Diagnostics is current active toolWindow')
+    pass

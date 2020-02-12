@@ -25,3 +25,7 @@ def findScreenObject(screenObject):
 def undoOperate():
     #taf undo operate
     pass
+
+def DragDropPanelDevice(screenobject,targetScreen):
+    #taf do drag and drop
+    pass

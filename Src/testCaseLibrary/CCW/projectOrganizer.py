@@ -16,3 +16,7 @@ def OpenScreen(screenName):
 
 def CreateScreen(count=1):
     pass
+
+def renameScreen(oldName,newName):
+    # call taf to rename screen
+    pass
