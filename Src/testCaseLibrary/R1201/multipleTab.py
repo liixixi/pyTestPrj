@@ -140,10 +140,11 @@ def CutCopyAcrossScreen():
 
     stepLogger.logStepInfo('Copy ClearAllAlarm button from Alarms screen to Main screen')
 
-    testCaseLibrary.CCW.objectOperate.copyScreenObject('ClearAllAlarm')
+    testCaseLibrary.CCW.copy.copyPanelDevice('ClearAllAlarm')
+
     testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main')
     verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Main', 'Main is current active toolWindow')  
-    testCaseLibrary.CCW.objectOperate.pasteScreenObject('ClearAllAlarm')
+    testCaseLibrary.CCW.copy.pasteScreenObject()
     verify(testCaseLibrary.CCW.objectOperate.findScreenObject('ClearAllAlarm')!=None,'ClearAllAlarm is pasted')
     
     stepLogger.logStepInfo('open Alarms screen again')
