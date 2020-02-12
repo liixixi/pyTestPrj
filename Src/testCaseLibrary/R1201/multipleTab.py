@@ -1,5 +1,3 @@
-import utilities
-import testCaseLibrary
 
 def CreateANewProject():
     import utilities
@@ -90,6 +88,8 @@ def multipleScreenTest():
     multipleScreenTest1()
     pass
 def multipleScreenTest1():
+    import utilities
+    import testCaseLibrary
     caseLogger = utilities.logger.getCaseLogger()
     caseLogger.logCaseInfo('open one or more screen')
 
@@ -189,6 +189,7 @@ def changeCurrentActiveScreen():
 def CutCopyAcrossScreen():
 
     import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
     import utilities
     from utilities.verify import verify as verify
 
