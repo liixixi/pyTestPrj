@@ -31,3 +31,9 @@ def Regression():
     #newProject()
 
     pass
+
+def copy():
+    pass
+
+def paste():
+    pass

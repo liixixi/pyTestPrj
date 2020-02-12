@@ -23,3 +23,16 @@ def getActiveToolWindow():
     # taf get active tool window
 
     return toolWindow.toolWindow()
+   
+
+import testCaseLibrary.CCW.screenObject as screenObject
+screenObject = {}
+
+import testCaseLibrary.CCW.objectOperate as objectOperate
+screenObject = {}
+
+
+def copyScreenObject(screenObject):
+    # taf copy object
+
+    return screenObject.screenObject()

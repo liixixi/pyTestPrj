@@ -1,5 +1,8 @@
 {
     "name": "multipleTab",
+    "moduleName" : "R1201.multipleTab",
+    "setup": "setupFunctionName",
+    "tearDown":"configurationTearDown",
 	"testCases": [
 		{
 			"name": "openMultipleScreen",
@@ -22,6 +25,16 @@
         {
 			"name": "changeCurrentActiveScreen",
 			"mainFunctionName": "changeCurrentActiveScreen",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"openMultipleScreen",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "CutCopyAcrossScreen",
+			"mainFunctionName": "CutCopyAcrossScreen",
             "moduleName":"R1201.multipleTab",
             "setup":"OpenProjectMulitpleTab",
             "tearDown":"CloseCCW",
