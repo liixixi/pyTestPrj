@@ -2,7 +2,7 @@
     "name": "multipleTab",
     "moduleName" : "R1201.multipleTab",
     "setup": "setupFunctionName",
-    "tearDown":"configurationTearDown",
+    "tearDown":"tearDownMultipleTab",
 	"testCases": [
 		{
 			"name": "openMultipleScreen",

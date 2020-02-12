@@ -1,4 +1,10 @@
 
+def setupMultipleTab():
+    pass
+
+def tearDownMultipleTab():
+    pass
+
 def CreateANewProject():
     import utilities
     utilities.WindowsShell.OpenCCW()

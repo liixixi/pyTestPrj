@@ -10,6 +10,10 @@ def SetupConfiguration(configurationName):
     print("Start executing configuration '{0}'\n".format(configurationName))
     pass
 
+def TearDownConfiguration(configurationName):
+    print("Configuration '{0}' has been closed \n".format(configurationName))
+    pass
+
 def verifyMessage(message):
     print("    " + message)
 

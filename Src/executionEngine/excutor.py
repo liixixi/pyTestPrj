@@ -1,11 +1,27 @@
+import random
+import importlib
+import utilities.logger as logger
 
 def Execute(configuration):
 
-    SetupConfiguration(configuration.name)
+    SetupConfiguration(configuration)
+
+    # random.shuffle(configuration.testCases)
 
     for testCase in configuration.testCases:
         if (TryExpendConfiguration(testCase) == False):
             ExecuteTestCase(testCase)
+
+        # if (TryExpendConfiguration(testCase) != False):
+        #     continue
+        
+        # if (hasattr(testCase, 'dependency')):
+        #     continue
+
+        # ExecuteTestCase(testCase)
+    
+    TearDownConfiguration(configuration)
+
     pass
 
 def TryExpendConfiguration(testCase):
@@ -21,9 +37,6 @@ def TryExpendConfiguration(testCase):
     pass
 
 def ExecuteTestCase(testCase):
-    from os.path import join
-    import importlib
-    
     moduleFullName = 'testCaseLibrary.' + testCase.moduleName
 
     testCaseModule = importlib.import_module(moduleFullName)
@@ -35,17 +48,38 @@ def ExecuteTestCase(testCase):
     TearDownTestCase(testCase.name, ret)
     pass
 
-def SetupConfiguration(configurationName):
-    from utilities import logger
+def SetupConfiguration(configuration):
+    logger.SetupConfiguration(configuration.name)
 
-    logger.SetupConfiguration(configurationName)
+    if (hasattr(configuration, 'setup') == False):
+        return
+    else:
+        moduleFullName = 'testCaseLibrary.' + configuration.moduleName
+
+        setupModule = importlib.import_module(moduleFullName)
+        setupFunction = getattr(setupModule, configuration.setup)
+
+        setupFunction()
 
     pass
 
-def SetupTestCase(testCase):
-    from utilities import logger
-    import importlib
+def TearDownConfiguration(configuration):
+    logger.TearDownConfiguration(configuration.name)
 
+    if (hasattr(configuration, 'tearDown') == False):
+        return
+    else:
+        moduleFullName = 'testCaseLibrary.' + configuration.moduleName
+
+        tearDownModule = importlib.import_module(moduleFullName)
+        tearDownFunction = getattr(tearDownModule, configuration.tearDown)
+
+        tearDownFunction()
+
+    pass
+
+
+def SetupTestCase(testCase):
     logger.logSetupTestCase(testCase.name)
 
     moduleFullName = 'testCaseLibrary.' + testCase.moduleName
