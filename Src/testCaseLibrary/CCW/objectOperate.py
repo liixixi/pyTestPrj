@@ -14,7 +14,7 @@ def pasteScreenObject(screenObject):
 
 def cutScreenObject(screenObject):
     # taf copy object
-    pass
+    pass   
     #return screenObject.screenObject()
 
 def findScreenObject(screenObject):
