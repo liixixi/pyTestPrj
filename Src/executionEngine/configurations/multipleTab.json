@@ -18,6 +18,15 @@
             "tearDown":"CloseCCW",
 			"path": "",
 			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "CutCopyAcrossScreen",
+			"mainFunctionName": "CutCopyAcrossScreen",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
         }
     ]
 }

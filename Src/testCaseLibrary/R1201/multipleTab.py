@@ -118,3 +118,62 @@ def changeCurrentActiveScreen():
     verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarm', 'Alarm is current active toolWindow')  
 
     pass
+
+def CutCopyAcrossScreen():
+
+    import testCaseLibrary
+    import utilities
+    from utilities.verify import verify as verify
+
+    stepLogger = utilities.logger.getStepLogger()
+    stepLogger.logStepInfo('open main screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') != None, 'Main is opened')
+
+    stepLogger.logStepInfo('open Alarms screen')
+
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.findToolWindow('Main') != None, 'Main is opened')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms') != None, 'Alarms is opened')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarms', 'Alarms is current active toolWindow')
+
+    stepLogger.logStepInfo('Copy ClearAllAlarm button from Alarms screen to Main screen')
+
+    testCaseLibrary.CCW.objectOperate.copyScreenObject('ClearAllAlarm')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Main', 'Main is current active toolWindow')  
+    testCaseLibrary.CCW.objectOperate.pasteScreenObject('ClearAllAlarm')
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('ClearAllAlarm')!=None,'ClearAllAlarm is pasted')
+    
+    stepLogger.logStepInfo('open Alarms screen again')
+    
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name=='Alarms','Alarm is current active Window')
+    
+    stepLogger.logStepInfo('Cut Up Key from Alarm Screen')
+    testCaseLibrary.CCW.objectOperate.cutScreenObject('Up')
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Up')==None,'Up Key is cut')
+
+    stepLogger.logStepInfo('Open Recipes Screen')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Recipes')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name=='Recipes','Recipes is current active Window')
+    
+    stepLogger.logStepInfo('Paste Up Key to Recipes screen')
+    testCaseLibrary.CCW.objectOperate.pasteScreenObject('Up')
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Up')!=None,'Up Key is pasted')    
+    
+    stepLogger.logStepInfo('Undo paste')
+    testCaseLibrary.CCW.objectOperate.undoOperate()
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Up')==None,'Undo, Up Key is revmoved')
+
+    stepLogger.logStepInfo('open Alarms screen again')
+    
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name=='Alarms','Alarm is current active Window')
+
+    stepLogger.logStepInfo('Undo cut')
+    testCaseLibrary.CCW.objectOperate.undoOperate()
+    verify(testCaseLibrary.CCW.objectOperate.findScreenObject('Up')!=None,'Undo, Up Key is back')
+    pass
+
