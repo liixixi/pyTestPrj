@@ -1,7 +1,7 @@
 
 
 def copyPanelDevice(target):
-    import testCaseLibrary
+    import testCaseLibrary.CCW
     import utilities
 
     #testCaseLibrary.CCW.getActiveToolWindow().selectPanelDevice(target)
@@ -12,10 +12,10 @@ def copyPanelDevice(target):
 
     #testCaseLibrary.CCW.getActiveToolWindow().selectPanelDevice(target)
     #utilities.keyboard.CtrlC()
-
+    pass
 
 def pasteScreenObject():
-    import testCaseLibrary
+    import testCaseLibrary.CCW
     import utilities
 
     #testCaseLibrary.CCW.Menu.Paste()

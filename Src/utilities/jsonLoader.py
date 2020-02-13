@@ -1,20 +1,20 @@
 
-def CreateObject(data):
-    obj = type('', (object,), data)
+def CreateObject(data, name=''):
+    obj = type(name, (object,), data)
     for a in dir(obj):
         if a.startswith('__'):
             continue
         if (type(getattr(obj, a)) == type([])):
-            setattr(obj, a, CreateList(getattr(obj, a)))
+            setattr(obj, a, CreateList(getattr(obj, a), name))
     return  obj
 
-def CreateList(data):
+def CreateList(data, name=''):
     retList = []
     for d in data:
         if (type(d) == type({})):
-             retList.append(CreateObject(d))
+             retList.append(CreateObject(d,name))
         if (type(d)) == type([]):
-            retList.append(CreateList(d))
+            retList.append(CreateList(d,name))
         if (type(d) == type('')): 
             retList.append(d)
 
@@ -30,7 +30,7 @@ if (__name__ == '__main__'):
     if (type(data) == type([])):
         root = CreateList(data)
     else:
-        root = CreateObject(data)
+        root = CreateObject(data, 'test')
 
     print(root)
 

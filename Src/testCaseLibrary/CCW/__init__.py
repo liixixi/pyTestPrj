@@ -31,6 +31,8 @@ screenObject = {}
 import testCaseLibrary.CCW.objectOperate as objectOperate
 screenObject = {}
 
+import testCaseLibrary.CCW.copy as copy
+
 
 def copyScreenObject(screenObject):
     # taf copy object

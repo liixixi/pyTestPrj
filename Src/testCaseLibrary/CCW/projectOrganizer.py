@@ -22,7 +22,7 @@ def IsScreenOpen(screenName):
 def CreateScreen(count=1):
     pass
 
-def RenameScreen(oldScreenName, newScreenName):
+def renameScreen(oldName,newName):
     # call taf to rename screen
     pass
     #return True/False

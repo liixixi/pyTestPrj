@@ -26,12 +26,13 @@ def undoOperate():
     #taf undo operate
     pass
 
-def dragScreenObject(screenObject, srcScreen, destScreen):
-    # taf drag
+def dragDropScreenObject(screenObject, srcScreen, destScreen):
+    # taf drag and drop
     pass
     #return screenObject.screenObject() 
 
-def dropScreenObject():
-    #tag drop
+
+def DragDropPanelDevice(screenobject,targetScreen):
+    #taf do drag and drop
     pass
-    #return screenObject.screenObject()
+

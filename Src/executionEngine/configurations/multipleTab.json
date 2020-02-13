@@ -2,7 +2,7 @@
     "name": "multipleTab",
     "moduleName" : "R1201.multipleTab",
     "setup": "setupFunctionName",
-    "tearDown":"configurationTearDown",
+    "tearDown":"tearDownMultipleTab",
 	"testCases": [
 		{
 			"name": "openMultipleScreen",
@@ -35,6 +35,24 @@
         {
 			"name": "CutCopyAcrossScreen",
 			"mainFunctionName": "CutCopyAcrossScreen",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "DragDropAcrossScreen",
+			"mainFunctionName": "DragDropAcrossScreen",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "renameActiveScreen",
+			"mainFunctionName": "renameActiveScreen",
             "moduleName":"R1201.multipleTab",
             "setup":"OpenProjectMulitpleTab",
             "tearDown":"CloseCCW",
