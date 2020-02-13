@@ -17,6 +17,12 @@ def OpenScreen(screenName):
 def IsScreenOpen(screenName):
     # call taf to judge whether screen has opened
     pass
+    #return True/Flase
 
 def CreateScreen(count=1):
     pass
+
+def RenameScreen(oldScreenName, newScreenName):
+    # call taf to rename screen
+    pass
+    #return True/False

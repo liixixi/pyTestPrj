@@ -25,3 +25,13 @@ def findScreenObject(screenObject):
 def undoOperate():
     #taf undo operate
     pass
+
+def dragScreenObject(screenObject, srcScreen, destScreen):
+    # taf drag
+    pass
+    #return screenObject.screenObject() 
+
+def dropScreenObject():
+    #tag drop
+    pass
+    #return screenObject.screenObject()

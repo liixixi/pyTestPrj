@@ -7,6 +7,13 @@ class toolWindow:
     def close(self):
         pass
 
+    def closeAllDocuments(self):
+        #close all documents
+        pass
+    def closeAllButThis(self):
+        #close all screens but this
+        pass
+
 
 class openedScreenList:
     def __init__(self):
