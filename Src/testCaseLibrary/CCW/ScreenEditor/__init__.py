@@ -29,10 +29,16 @@ def CreateAllPanelDevice():
     import testCaseLibrary
     testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1')
 
-    # for paneldevice in list:
-    #    CreatePanelDevice(paneldevice.get('x'),y, height, witdth, 'Text')
+    import utilities
+    panelDeviceInfoList = utilities.excelReader.loadWorkBook("C:/Users/Iwang1/Desktop/Sample.xlsx")
 
-    # for paneldevice in list:
-    #    VerifyPanelDeviceCreated(x,y, height, witdth, 'Text')    
+    for paneldevice in panelDeviceInfoList:
+        CreatePanelDevice(paneldevice['X'], paneldevice['Y'], paneldevice['Height'], paneldevice['Width'], paneldevice['Notes'])
+
+    for paneldevice in panelDeviceInfoList:
+        pass
+        VerifyPanelDeviceCreated(paneldevice['X'], paneldevice['Y'], paneldevice['Height'], paneldevice['Width'], paneldevice['Notes'])    
 
     pass
+
+CreateAllPanelDevice()
