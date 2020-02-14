@@ -2,23 +2,43 @@ import random
 import importlib
 import utilities.logger as logger
 
-def Execute(configuration):
+def ExecuteTestCase(testCase):
+    moduleFullName = 'testCaseLibrary.' + testCase.moduleName
+
+    testCaseModule = importlib.import_module(moduleFullName)
+    testCaseFunction = getattr(testCaseModule, testCase.mainFunctionName)
+
+    #basic setup and test support is here, do less work when create test case
+    SetupTestCase(testCase)
+    ret = testCaseFunction()
+    TearDownTestCase(testCase.name, ret)
+    pass
+
+def Execute(configuration, testCaseExecutor=ExecuteTestCase):
 
     SetupConfiguration(configuration)
 
-    # random.shuffle(configuration.testCases)
+    leftTestCases = configuration.testCases
 
-    for testCase in configuration.testCases:
-        if (TryExpendConfiguration(testCase) == False):
-            ExecuteTestCase(testCase)
+    while (len(leftTestCases) > 0):
 
-        # if (TryExpendConfiguration(testCase) != False):
-        #     continue
+        random.shuffle(leftTestCases)
+
+        executedTestCases = []
+        for testCase in leftTestCases:
+
+            if (TryExpendConfiguration(testCase) != False):
+                executedTestCases.append(testCase)
+                continue
+            
+            if (hasattr(testCase, 'dependency') != False and testCase.dependency in leftTestCases):
+                continue
+
+            testCaseExecutor(testCase)
+            executedTestCases.append(testCase)
         
-        # if (hasattr(testCase, 'dependency')):
-        #     continue
-
-        # ExecuteTestCase(testCase)
+        for testCase in executedTestCases:
+            leftTestCases.remove(testCase)
     
     TearDownConfiguration(configuration)
 
@@ -36,17 +56,7 @@ def TryExpendConfiguration(testCase):
 
     pass
 
-def ExecuteTestCase(testCase):
-    moduleFullName = 'testCaseLibrary.' + testCase.moduleName
 
-    testCaseModule = importlib.import_module(moduleFullName)
-    testCaseFunction = getattr(testCaseModule, testCase.mainFunctionName)
-
-    #basic setup and test support is here, do less work when create test case
-    SetupTestCase(testCase)
-    ret = testCaseFunction()
-    TearDownTestCase(testCase.name, ret)
-    pass
 
 def SetupConfiguration(configuration):
     logger.SetupConfiguration(configuration.name)
@@ -102,4 +112,20 @@ def SetupTestCase(testCase):
     pass
 
 def TearDownTestCase(testCaeeName, returnValue):
+    pass
+
+
+def FakeExecute(testCase):
+    pass
+
+if (__name__=='__main__'):
+    # add utilities to python path
+
+    # load test configuration
+
+    # call Execute
+    # 1. provide a fake execute function, add to json
+    # 2. provide a fake execute case function, add to Execute function
+    # 3. adopt a python unit test framework
+
     pass
