@@ -15,7 +15,7 @@ def tearDown():
 
 def OpenCrossReferenceWindow():
     # open cross reference tool windows
-    import testCaseLibrary
+    import testCaseLibrary.CCW.Menu
     testCaseLibrary.CCW.Menu.openCrossReferenceWindow()
 
 def VerifyCrossReferenceWindowExists():
