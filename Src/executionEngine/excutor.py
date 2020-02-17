@@ -168,5 +168,6 @@ if (__name__=='__main__'):
     from unittest import mock
     mock_fakeTestCase = mock.Mock(return_value = 'Execute test case', side_effect = FakeExecuteTestCase)
     Execute(testconfiguration, testCaseExecutor=mock_fakeTestCase)
+    mock_fakeTestCase.assert_not_called()
 
     pass
