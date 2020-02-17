@@ -1,3 +1,97 @@
 {
-    
+    "name": "testConfiguration",
+    "moduleName" : "R1201.multipleTab",
+    "setup": "setupFunctionName",
+    "tearDown":"tearDownMultipleTab",
+	"testCases": [
+		{
+			"name": "testCase1",
+			"mainFunctionName": "testcase1function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"CreateANewProject",
+            "tearDown":"CloseCCW",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase2",
+			"mainFunctionName": "testcase2function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"CreateANewProject",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase1",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase3",
+			"mainFunctionName": "testcase3function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase2",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase4",
+			"mainFunctionName": "testcase4function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase2",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase5",
+			"mainFunctionName": "testcase5function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase4",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase6",
+			"mainFunctionName": "testcase6function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase3",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase7",
+			"mainFunctionName": "testcase7function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase5",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase8",
+			"mainFunctionName": "testcase8function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase3",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        },
+        {
+			"name": "testCase9",
+			"mainFunctionName": "testcase9function",
+            "moduleName":"R1201.multipleTab",
+            "setup":"OpenProjectMulitpleTab",
+            "tearDown":"CloseCCW",
+            "path": "",
+            "dependency":"testCase8",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        }
+    ]
 }
