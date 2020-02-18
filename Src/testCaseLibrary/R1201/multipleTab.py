@@ -98,10 +98,10 @@ def multipleScreenTest():
     import utilities
     caseLogger = utilities.logger.getCaseLogger()
 
-    caseLogger.logCaseInfo('open more than one screen')
+    caseLogger.logCaseInfo('Open more than one screen')
     multipleScreenTest1()
 
-    caseLogger.logCaseInfo('change current active screen')
+    caseLogger.logCaseInfo('Change current active screen')
     multipleScreenTest2()
 
     caseLogger.logCaseInfo('Cut/Copy/Paste Across Tabs')
@@ -110,15 +110,35 @@ def multipleScreenTest():
     caseLogger.logCaseInfo('Drag and drop Across Tabs')
     multipleScreenTest4()
 
-    caseLogger.logCaseInfo('rename active screen name')
+    caseLogger.logCaseInfo('Rename active screen name')
     multipleScreenTest5()
 
-    caseLogger.logCaseInfo('close screen tab')
+    caseLogger.logCaseInfo('Close screen tab')
     multipleScreenTest6()
 
+    caseLogger.logCaseInfo('Change graphic terminal')
+    multipleScreenTest7()
 
+    caseLogger.logCaseInfo('Close project')
+    multipleScreenTest8()
+
+    caseLogger.logCaseInfo('Upload Application')
+    multipleScreenTest9()
+
+    caseLogger.logCaseInfo('Validate, Download Application')
+    multipleScreenTest10()
+
+    caseLogger.logCaseInfo('Focus in active screen')
+    multipleScreenTest11()
+
+    caseLogger.logCaseInfo('Compability PVC')
+    multipleScreenTest12()
+
+    caseLogger.logCaseInfo('Compability old project')
+    multipleScreenTest13()
     pass
 
+#open more than one screen
 def multipleScreenTest1():
     import utilities
     import testCaseLibrary
@@ -130,10 +150,10 @@ def multipleScreenTest1():
     utilities.WindowsShell.OpenCCW()
 
     from utilities.verify import verify as verify
-    # 1. open MultipleTab project
-    stepLogger.logStepInfo('open MultipleTab project')
-    verify(testCaseLibrary.CCW.Menu.openProject(name='MultipleTab') != None, 'MultipleTab project is opened')
-    
+    # 1. create new PV800 project
+    stepLogger.logStepInfo('create new PV800 project')
+    verify(testCaseLibrary.CCW.Menu.newProject() != None, 'create new PV800 project')
+   
     # 2. open default screen Screen_1
     stepLogger.logStepInfo('open default screen Screen_1')
     verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 is opened')
@@ -176,6 +196,7 @@ def multipleScreenTest1():
     verify(CloseCCW() != None, 'CCW is closed')
     pass 
 
+#change current active screen
 def multipleScreenTest2():
     import utilities
     import testCaseLibrary
@@ -210,7 +231,7 @@ def multipleScreenTest2():
     verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Diagnostics', 'Diagnostics is active')
 
     # 6. open Alarm Banner and active it
-    stepLogger.logStepInfo('open Alarm and active it')
+    stepLogger.logStepInfo('open Alarm Banner and active it')
     verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarm Banner') != None, 'Alarm Banner is opened')
     verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarm Banner', 'Alarm Banner is active')
 
@@ -221,6 +242,7 @@ def multipleScreenTest2():
 
     pass
 
+#cut/copy/paste across tabs
 def multipleScreenTest3():
     import utilities
     import testCaseLibrary
@@ -298,6 +320,7 @@ def multipleScreenTest3():
 
     pass
 
+#drag and drop across tabs
 def multipleScreenTest4():
     import utilities
     import testCaseLibrary
@@ -348,6 +371,7 @@ def multipleScreenTest4():
 
     pass
 
+#rename active screen name
 def multipleScreenTest5():
     import utilities
     import testCaseLibrary
@@ -408,6 +432,7 @@ def multipleScreenTest5():
 
     pass
 
+#close screen tab
 def multipleScreenTest6():
     import utilities
     import testCaseLibrary
@@ -470,6 +495,375 @@ def multipleScreenTest6():
     verify(CloseCCW() != None, 'CCW is closed')
 
     pass
+
+#change graphics terminal
+def multipleScreenTest7():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    # 1. open project MultipleTab
+    stepLogger.logStepInfo('open project MultipleTab')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'MultipleTab') != None, 'MultipleTab project is opened')
+
+    # 2. open Main, Alarms and Diagnostics screen
+    stepLogger.logStepInfo('open Main, Alarms and Diagnostics screen')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Alarms screen is opened')
+
+    # 3. change ternimal size/type
+    stepLogger.logStepInfo('change terminal size')
+    currentType = testCaseLibrary.CCW.projectOrganizer.GetGraphicsTerminalType()
+    testCaseLibrary.CCW.projectOrganizer.ChangeGraphicsTerminal('')
+    newType = testCaseLibrary.CCW.projectOrganizer.GetGraphicsTerminalType()
+    verify(currentType != newType, 'terminal size is changed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') == False, 'Main screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') == False, 'Alarms screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+    # 4. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name='MultipleTab') != None, 'project MultipleTab is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+    pass
+
+#close project
+def multipleScreenTest8():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    # 1. open project MultipleTab
+    stepLogger.logStepInfo('open project MultipleTab')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'MultipleTab') != None, 'MultipleTab project is opened')
+
+    # 2. open Main, Alarms and Diagnostics 
+    stepLogger.logStepInfo('open Main, Alarms and Diagnostics')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Diagnostics screen is opened')
+
+    # 3. save project to another name
+    stepLogger.logStepInfo('save project to another name')
+    verify(testCaseLibrary.CCW.Menu.SaveAs('MultipleTab2') != None, 'save project as MultipleTab2')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') == False, 'Main screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') == False, 'Alarms screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+    # 4. open Main, Alarms and Diagnostics
+    stepLogger.logStepInfo('open Main, Alarms and Diagnostics')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Diagnostics screen is opened')
+
+    # 5. close project
+    stepLogger.logStepInfo('close project')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name='MultipleTab') != None, 'project MultipleTab is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') == False, 'Main screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') == False, 'Alarms screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+    # 6. open project MultipleTab, open Main, Alarms and Diagnostics
+    stepLogger.logStepInfo('open project MultipleTab, open Main, Alarms and Diagnostics')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'MultipleTab') != None, 'MultipleTab project is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Diagnostics screen is opened')
+
+    # 7. open recent project
+    stepLogger.logStepInfo('open recent project')
+    verify(testCaseLibrary.CCW.Menu.openRecentProject('MultipleTab2') != None, 'recent project MultipleTab2 is opened')
+    verify(testCaseLibrary.CCW.Menu.GetCurrentProjectName() != 'MultipleTab', 'MultipleTab project is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') == False, 'Main screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') == False, 'Alarms screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+    # 8. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name='MultipleTab2') != None, 'project MultipleTab2 is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+    pass
+# Upload Application
+def multipleScreenTest9():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    # 1. open project MultipleTab
+    stepLogger.logStepInfo('open project MultipleTab')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'MultipleTab') != None, 'MultipleTab project is opened')
+
+    # 2. open Main, Alarms and Diagnostics 
+    stepLogger.logStepInfo('open Main, Alarms and Diagnostics')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Diagnostics screen is opened')
+
+    # 3. unload first, then cancel
+    stepLogger.logStepInfo('upload first, then cancel')
+    testCaseLibrary.CCW.projectOrganizer.Upload()
+    testCaseLibrary.CCW.projectOrganizer.CancelUpload()
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') == True, 'Main screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') == True, 'Alarms screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is still open')
+
+    # 4. upload application App1
+    stepLogger.logStepInfo('upload application')
+    testCaseLibrary.CCW.projectOrganizer.Upload('')
+    verify(testCaseLibrary.CCW.projectOrganizer.ConfirmUpload() != None, 'application is uploaded')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') == False, 'Main screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') == False, 'Alarms screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+    # 5. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name='MultipleTab') != None, 'project MultipleTab is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+    pass
+# Validate, Download Application
+def multipleScreenTest10():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    # 1. open project MultipleTab
+    stepLogger.logStepInfo('open project MultipleTab')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'MultipleTab') != None, 'MultipleTab project is opened')
+
+    # 2. open Main, Alarms and Diagnostics
+    stepLogger.logStepInfo('open Main, Alarms and Diagnostics')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opend')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opend')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Diagnostics screen is opend')
+
+
+    # 3. validate application
+    stepLogger.logStepInfo('validate application')
+    verify(testCaseLibrary.CCW.projectOrganizer.Validate() != None, 'application is validated')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Main') != False, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarms') != False, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnotics') != False, 'Diagnotics screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsBlink() == False, 'no screen blink')
+
+    # 4. download application
+    stepLogger.logStepInfo('download application')
+    verify(testCaseLibrary.CCW.projectOrganizer.Download() != None, 'application is downloaded')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsBlink() == False, 'no screen blink')
+
+    # 5. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name = 'MultipleTab') != None, 'project MultipleTab is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+    pass
+# Focus in active screen
+def multipleScreenTest11():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    # 1. open project MultipleTab
+    stepLogger.logStepInfo('open project MultipleTab')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'MultipleTab') != None, 'MultipleTab project is opened')
+
+    # 2. open Main, Alarms and Diagnostics
+    stepLogger.logStepInfo('open Main, Alarms and Diagnostics')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Main') != None, 'Main screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms') != None, 'Alarms screen is opened')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics') != None, 'Diagnostics screen is opened')
+
+    # 3. focus Alarms screen
+    stepLogger.logStepInfo('focus Alarms screen')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarms')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarm', 'Alarms screen is shown in front')
+    verify(testCaseLibrary.CCW.findToolWindow('Alarms').IsHasFocus() == True, 'Alarms screen has focus')
+
+    # 4. open object explorer
+    stepLogger.logStepInfo('open object explorer')
+    verify(testCaseLibrary.CCW.Menu.OpenObjectExplorer() != None, 'object explorer is opened')
+    
+    # 5. select object M_OBJ1 in Main
+    stepLogger.logStepInfo('select object M_OBJ1 in Main')
+    testCaseLibrary.CCW.objectExplorer.SelectObject('Main', 'M_OBJ1')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Main', 'Main screen is shown')
+    screenObject1 = testCaseLibrary.CCW.objectOperate.findScreenObject('M_OBJ1') 
+    verify(screenObject1.hasFocus() == True, 'M_OBJ1 has focus')
+
+    # 6. select object A_OBJ1 in Alarms
+    stepLogger.logStepInfo('select object A_OBJ1 in Alarms')
+    testCaseLibrary.CCW.objectExplorer.SelectObject('Alarms', 'A_OBJ1')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarms', 'Alarms screen is shown')
+    screenObject2 = testCaseLibrary.CCW.objectOperate.findScreenObject('A_OBJ1')
+    verify(screenObject2.hasFocus() == True, 'A_OBJ1 has focus')
+
+    # 7. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name = 'MultipleTab') != None, 'project MultipleTab is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+    pass
+# Compability PVC
+def multipleScreenTest12():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy 
+    from utilities.verify import verify as verify
+    
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+
+    # 1. create new Pvc project 
+    stepLogger.logStepInfo('create new Pvc project')
+    verify(testCaseLibrary.CCW.Menu.newProject() != None, 'create new Pvc project')
+    
+    # 2. open screen Screen_1
+    stepLogger.logStepInfo('open screen Screen_1')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 is opened')
+
+    # 3. open screen Diagnostics 
+    stepLogger.logStepInfo('open screen Diagnostics')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Diagnostics', 'Diagnostics screen is shown')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 is still open')
+
+    # 4. open screen Alarm Banner
+    stepLogger.logStepInfo('open screen Alarm Banner')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarm Banner')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarm Banner', 'Alarm Banner screen is shown')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is still open')
+
+    # 5. change graphics ternimal
+    stepLogger.logStepInfo('change graphics terminal')
+    currentType = testCaseLibrary.CCW.projectOrganizer.GetGraphicsTerminalType()
+    testCaseLibrary.CCW.projectOrganizer.ChangeGraphicsTerminal('')
+    newType = testCaseLibrary.CCW.projectOrganizer.GetGraphicsTerminalType()
+    verify(currentType != newType, 'terminal size is changed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == False, 'Screen_1 screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarm Banner') == False, 'Alarm Banner screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+    # 6. open Screen_1, Diagnostics and Alarm Banner
+    stepLogger.logStepInfo('open Screen_1, Diagnostics and Alarm Banner')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') 
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarm Banner')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarm Banner') == True, 'Alarm Banner screen is closed')
+
+    # 7. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name = '') != None, 'project is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+    
+    pass
+
+def multipleScreenTest13():
+    import utilities
+    import testCaseLibrary
+    import testCaseLibrary.CCW.copy
+    from utilities.verify import verify as verify
+
+    stepLogger = utilities.logger.getStepLogger()
+
+    # open ccw, need call Taf in OpenCCW()
+    utilities.WindowsShell.OpenCCW()
+    
+    # 1. open old project OldProject
+    stepLogger.logStepInfo('open old project OldProject')
+    verify(testCaseLibrary.CCW.Menu.openProject(name = 'OldProject') != None, 'OldProject is opened')
+
+    # 2. open Screen_1 screen
+    stepLogger.logStepInfo('open Screen_1 screen')
+    verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 screen is opened')
+
+    # 3. open Diagnostics screen
+    stepLogger.logStepInfo('open Diagnostics screen')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Diagnostics')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Diagnostics', 'Diagnostics screen is shown')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is still open')
+
+    # 4. open Alarm Banner screen
+    stepLogger.logStepInfo('open Alarm Banner screen')
+    testCaseLibrary.CCW.projectOrganizer.OpenScreen('Alarm Banner')
+    verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarm Banner', 'Alarm Banner screen is shown')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is still open')
+
+    # 5. validate project
+    stepLogger.logStepInfo('validate project')
+    verify(testCaseLibrary.CCW.projectOrganizer.Validate() != None, 'project is validated')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarm Banner') == True, 'Alarm Banner screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is still open')
+
+    # 6. download application
+    stepLogger.logStepInfo('download application')
+    verify(testCaseLibrary.CCW.projectOrganizer.Download() != None, 'application is downloaded')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarm Banner') == True, 'Alarm Banner screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is still open')
+
+    # 7. cancel upload 
+    stepLogger.logStepInfo('cancel upload project')
+    testCaseLibrary.CCW.projectOrganizer.Upload('')
+    testCaseLibrary.CCW.projectOrganizer.CancelUpload()
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == True, 'Screen_1 screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarm Banner') == True, 'Alarm Banner screen is still open')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == True, 'Diagnostics screen is still open')
+
+    # 8. upload application
+    testCaseLibrary.CCW.projectOrganizer.Upload('')
+    verify(testCaseLibrary.CCW.projectOrganizer.ConfirmUpload() != None, 'application is uploaded')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Screen_1') == False, 'Screen_1 screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Alarm Banner') == False, 'Alarm Banner screen is closed')
+    verify(testCaseLibrary.CCW.projectOrganizer.IsScreenOpen('Diagnostics') == False, 'Diagnostics screen is closed')
+
+
+    # 9. close project and CCW
+    stepLogger.logStepInfo('close project and CCW')
+    verify(testCaseLibrary.CCW.Menu.closeProject(name='OldProject') != None, 'project OldProject is closed')
+    verify(CloseCCW() != None, 'CCW is closed')
+
+    pass
+
 def changeCurrentActiveScreen():
 
     import testCaseLibrary
