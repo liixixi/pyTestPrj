@@ -17,8 +17,8 @@
 			"name": "multipleScreenTest",
 			"mainFunctionName": "multipleScreenTest",
             "moduleName":"R1201.multipleTab",
-            "setup":"CreateANewProject",
-            "tearDown":"CloseCCW",
+            "setup":"",
+            "tearDown":"",
 			"path": "",
 			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
         },

@@ -50,3 +50,6 @@ def GetCurrentProjectName():
 
 def OpenObjectExplorer():
     pass
+
+def ResetWindowLayout():
+    pass

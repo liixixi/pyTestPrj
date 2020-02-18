@@ -141,7 +141,7 @@ def multipleScreenTest():
 #open more than one screen
 def multipleScreenTest1():
     import utilities.WindowsShell
-    import testCaseLibrary
+    import testCaseLibrary 
 
     stepLogger = utilities.logger.getStepLogger()
     #stepLogger.logStepInfo('open one or more screen')
@@ -152,8 +152,10 @@ def multipleScreenTest1():
     from utilities.verify import verify as verify
     # 1. create new PV800 project
     stepLogger.logStepInfo('create new PV800 project')
-    verify(testCaseLibrary.CCW.Menu.newProject() != None, 'create new PV800 project')
-   
+    testCaseLibrary.CCW.Menu.newProject(addDevice=False)
+    testCaseLibrary.CCW.catalogService.AddDevice('2711R-T10T')
+    verify(testCaseLibrary.CCW.projectOrganizer.CreatePV800Project() != None, 'create PV800 project')
+
     # 2. open default screen Screen_1
     stepLogger.logStepInfo('open default screen Screen_1')
     verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 is opened')
@@ -718,6 +720,7 @@ def multipleScreenTest11():
     
     # 5. select object M_OBJ1 in Main
     stepLogger.logStepInfo('select object M_OBJ1 in Main')
+    testCaseLibrary.CCW.Menu.OpenObjectExplorer()
     testCaseLibrary.CCW.objectExplorer.SelectObject('Main', 'M_OBJ1')
     verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Main', 'Main screen is shown')
     screenObject1 = testCaseLibrary.CCW.objectOperate.findScreenObject('M_OBJ1') 
@@ -725,6 +728,7 @@ def multipleScreenTest11():
 
     # 6. select object A_OBJ1 in Alarms
     stepLogger.logStepInfo('select object A_OBJ1 in Alarms')
+    testCaseLibrary.CCW.Menu.OpenObjectExplorer()
     testCaseLibrary.CCW.objectExplorer.SelectObject('Alarms', 'A_OBJ1')
     verify(testCaseLibrary.CCW.getActiveToolWindow().name == 'Alarms', 'Alarms screen is shown')
     screenObject2 = testCaseLibrary.CCW.objectOperate.findScreenObject('A_OBJ1')
@@ -750,8 +754,10 @@ def multipleScreenTest12():
 
     # 1. create new Pvc project 
     stepLogger.logStepInfo('create new Pvc project')
-    verify(testCaseLibrary.CCW.Menu.newProject() != None, 'create new Pvc project')
-    
+    testCaseLibrary.CCW.Menu.newProject(addDevice=False)
+    testCaseLibrary.CCW.catalogService.AddDevice('2711R-T10T')
+    verify(testCaseLibrary.CCW.projectOrganizer.CreatePVCProject() != None, 'create new PVC project')
+
     # 2. open screen Screen_1
     stepLogger.logStepInfo('open screen Screen_1')
     verify(testCaseLibrary.CCW.projectOrganizer.OpenScreen('Screen_1') != None, 'Screen_1 is opened')

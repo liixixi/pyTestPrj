@@ -1,0 +1,17 @@
+{
+    "name": "objectExplorer",
+    "moduleName" : "R1201.objectExplorer",
+    "setup": "setupObjectExplorer",
+    "tearDown":"tearDownObjectExplorer",
+	"testCases": [
+		{
+			"name": "showCloseHideObjectExplorer",
+			"mainFunctionName": "showCloseHideObjectExplorer",
+            "moduleName":"R1201.objectExplorer",
+            "setup":"",
+            "tearDown":"",
+			"path": "",
+			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
+        }
+    ]
+}

@@ -29,9 +29,6 @@ def getActiveToolWindow():
 import testCaseLibrary.CCW.screenObject as screenObject
 screenObject = {}
 
-def findObjectOnScreen(objectName):
-    return screenObject.screenObject()
-
 import testCaseLibrary.CCW.objectOperate as objectOperate
 screenObject = {}
 
