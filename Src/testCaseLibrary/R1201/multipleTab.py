@@ -140,7 +140,7 @@ def multipleScreenTest():
 
 #open more than one screen
 def multipleScreenTest1():
-    import utilities
+    import utilities.WindowsShell
     import testCaseLibrary
 
     stepLogger = utilities.logger.getStepLogger()
@@ -905,6 +905,7 @@ def changeCurrentActiveScreen():
 def CutCopyAcrossScreen():
 
     import testCaseLibrary
+    import testCaseLibrary.CCW.projectOrganizer
     import testCaseLibrary.CCW.copy 
     import utilities
     from utilities.verify import verify as verify
@@ -963,7 +964,7 @@ def CutCopyAcrossScreen():
     pass
 
 def DragDropAcrossScreen():
-    import testCaseLibrary
+    import testCaseLibrary.CCW.projectOrganizer
     import utilities
     from utilities.verify import verify as verify
     
