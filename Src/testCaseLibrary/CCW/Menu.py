@@ -39,3 +39,19 @@ def copy():
 
 def paste():
     pass
+
+def SaveAs(newProjectName):
+    pass
+
+def openRecentProject(name, path=''):
+
+    pass
+
+def GetCurrentProjectName():
+    pass
+
+def OpenObjectExplorer():
+    pass
+
+def ResetWindowLayout():
+    pass

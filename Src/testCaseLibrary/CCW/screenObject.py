@@ -1,10 +1,14 @@
 
 class screenObject:
     def __init__(self):
-        self.screenObject = ''
+        #self.screenObject = ''
+        self.objectName = ''
         pass
 
     def close(self):
+        pass
+
+    def hasFocus(self):
         pass
 
 class openedScreenObject:

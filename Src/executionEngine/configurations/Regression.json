@@ -28,7 +28,11 @@
 		{
 			"name": "multipleTab",
 			"defination": "multipleTab"
+		},
+		{
+			"name": "objectExplorer",
+			"defination": "objectExplorer"
 		}
-		
+	
 	]
 }

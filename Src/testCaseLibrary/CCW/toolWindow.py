@@ -14,6 +14,9 @@ class toolWindow:
         #close all screens but this
         pass
 
+    def IsHasFocus(self):
+        pass
+
 
 class openedScreenList:
     def __init__(self):

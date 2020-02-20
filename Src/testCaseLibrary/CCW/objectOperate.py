@@ -1,26 +1,28 @@
 
 # object operate
 
-    
+
 def copyScreenObject(screenObject):
     # taf copy object
     pass
     #return screenObject.screenObject()
 
 def pasteScreenObject(screenObject):
-    # taf copy object
+    # taf paste object
     pass
     #return screenObject.screenObject()
 
 def cutScreenObject(screenObject):
-    # taf copy object
+    # taf cut object
     pass   
     #return screenObject.screenObject()
 
 def findScreenObject(screenObject):
-    # taf copy object
+    # taf find screen object
     pass
-    #return screenObject.screenObject()
+    from testCaseLibrary.CCW.screenObject import screenObject
+    s1 = screenObject()
+    return s1
 
 def undoOperate():
     #taf undo operate
@@ -32,7 +34,7 @@ def dragDropScreenObject(screenObject, srcScreen, destScreen):
     #return screenObject.screenObject() 
 
 
-def DragDropPanelDevice(screenobject,targetScreen):
+def DragDropPanelDevice(screenObject,targetScreen):
     #taf do drag and drop
     pass
 
