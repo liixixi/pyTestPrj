@@ -22,7 +22,7 @@ def Execute(configuration, testCaseExecutor=ExecuteTestCase):
     SetupConfiguration(configuration)
 
     leftTestCases = configuration.testCases
-
+    
     while (len(leftTestCases) > 0):
 
         random.shuffle(leftTestCases)
@@ -39,11 +39,15 @@ def Execute(configuration, testCaseExecutor=ExecuteTestCase):
                 continue
 
             testCaseExecutor(testCase)
-            executedTestCases.append(testCase)
+            executedTestCases.append(testCase)  
+
+        if (len(executedTestCases) == 0):
+            logger.circularrefernceLogger(configuration.name)
+            return
         
         for testCase in executedTestCases:
             leftTestCases.remove(testCase)
-    
+  
     TearDownConfiguration(configuration)
 
     pass
@@ -59,8 +63,6 @@ def TryExpendConfiguration(testCase):
     Execute(executionEngine.configurations[expendedConfigurationName])
 
     pass
-
-
 
 def SetupConfiguration(configuration):
     logger.SetupConfiguration(configuration.name)
@@ -92,7 +94,6 @@ def TearDownConfiguration(configuration):
 
     pass
 
-
 def SetupTestCase(testCase):
     logger.logSetupTestCase(testCase.name)
 
@@ -118,56 +119,67 @@ def SetupTestCase(testCase):
 def TearDownTestCase(testCaeeName, returnValue):
     pass
 
-# Fake function for testing
-def FakeExecuteTestCase(testCase):
+# ----------- using for testing the Execute function ----------#
+# def FakeExecuteTestCase(testCase):
 
-    FakeSetupTestCase(testCase)
-    FakeTestCaseFunction(testCase)
-    FakeTearDownTestCase(testCase)
+#     FakeSetupTestCase(testCase)
+#     FakeTestCaseFunction(testCase)
+#     FakeTearDownTestCase(testCase)
 
-    pass
+#     pass
 
-def FakeSetupTestCase(testCase):
+# def FakeSetupTestCase(testCase):
 
-    print("---------------------------\n")
-    print("Start executing test case '{0}'\n".format(testCase.name))
+#     print("---------------------------\n")
+#     print("Start executing test case '{0}'\n".format(testCase.name))
 
-    pass
+#     pass
 
-def FakeTearDownTestCase(testCase):
+# def FakeTearDownTestCase(testCase):
 
-    print("Test case '{0}' has been closed\n".format(testCase.name))
+#     print("Test case '{0}' has been closed\n".format(testCase.name))
 
-    pass
+#     pass
 
-def FakeTestCaseFunction(testCase):
+# def FakeTestCaseFunction(testCase):
 
-    print("Executing test case '{0}'\n".format(testCase.name))
+#     print("Executing test case '{0}'\n".format(testCase.name))
 
-    pass
+#     pass
 
+# if (__name__=='__main__'):
+#     # add utilities to python path
+#     from utilities import jsonLoader
+#     import json
 
-if (__name__=='__main__'):
-    # add utilities to python path
-    from utilities import jsonLoader
-    import json
-
-    # load test configurationS
-    with open(r'executionEngine\test\testConfiguration.json') as json_file:
-        data = json.load(json_file)
+#     # load test configurationS
+#     with open(r'executionEngine\test\testConfiguration.json') as json_file:
+#         data = json.load(json_file)
     
-    testconfiguration = jsonLoader.CreateObject(data)
+#     testconfiguration = jsonLoader.CreateObject(data)
 
-    # call Execute
-    # 1. provide a fake execute function, add to json
-    # 2. provide a fake execute case function, add to Execute function
+#     # call Execute
+#     # 1. provide a fake execute function, add to json
+#     # 2. provide a fake execute case function, add to Execute function
 
-    Execute(testconfiguration, testCaseExecutor = FakeExecuteTestCase)
+#     # Execute(testconfiguration, testCaseExecutor = FakeExecuteTestCase)
 
-    # 3. adopt a python unit test framework
-    from unittest import mock
-    mock_fakeTestCase = mock.Mock(return_value = 'Execute test case', side_effect = FakeExecuteTestCase)
-    Execute(testconfiguration, testCaseExecutor=mock_fakeTestCase)
-    mock_fakeTestCase.assert_not_called()
+#     # 3. adopt a python unit test framework
+#     from unittest import mock
 
-    pass
+#     mock_fakeTestCase = mock.Mock(return_value = 'Execute test case', side_effect = FakeExecuteTestCase)
+#     Execute(testconfiguration, testCaseExecutor=mock_fakeTestCase)
+
+#     testconfiguration = jsonLoader.CreateObject(data)
+
+#     mock_fakeTestCase.assert_called()
+
+#     assert mock_fakeTestCase.call_count == 9
+#     testCases = testconfiguration.testCases
+
+#     # Test whether testCases have been called by the mock function
+
+#     for testCase in testCases:
+#         mock_fakeTestCase.assert_any_call(testCase)
+
+#     pass

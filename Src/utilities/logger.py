@@ -39,3 +39,7 @@ class caseLogger:
 
 def getCaseLogger():
     return caseLogger()
+
+def circularrefernceLogger(configuraitonName):
+    print("Configuration '{0}' has a circular reference, please check it!\n".format(configuraitonName))
+    pass

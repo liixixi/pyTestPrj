@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 
 def newProject(name = '', path = '', addDevice = True):
     # call taf workflow

@@ -10,7 +10,7 @@
             "moduleName":"R1201.multipleTab",
             "setup":"CreateANewProject",
             "tearDown":"CloseCCW",
-			"path": "",
+            "path": "",
 			"parameters": ["1", "2", {"a":"va", "b": "vb"}]
         },
         {

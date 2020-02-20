@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 
 def CreatePanelDevice(x,y,height,width,type):
     pass
